@@ -13,7 +13,6 @@ const PlaceOrderScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart)
 
   const addDecimals = (num) => (Math.round(num * 100) / 100).toFixed(2)
-
   cart.itemsPrice = cart.cartItems.reduce(
     (acc, item) => acc + item.price * item.qty,
     0
@@ -45,7 +44,7 @@ const PlaceOrderScreen = ({ history }) => {
       shippingPrice: cart.shippingPrice,
       totalPrice: cart.totalPrice,
     }
-
+    console.log(ord)
     dispatch(createOrder(ord))
   }
   return (

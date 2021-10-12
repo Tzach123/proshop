@@ -8,13 +8,6 @@ const getProducts = asyncHandler(async (req, res) => {
   const pageSize = 10
   const page = Number(req.query.pageNumber) || 1
   const keyword = req.query.keyword
-    ? {
-        name: {
-          $regex: req.query.keyword,
-          $options: 'i',
-        },
-      }
-    : {}
 
   const count = await Product.countDocuments({ ...keyword })
   const products = await Product.find({ ...keyword })
@@ -93,7 +86,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     const updateProduct = await product.save()
     res.json(updateProduct)
   } else {
-    res.status(201).status(404)
+    res.status(404)
     throw Error('Product not found')
   }
 })
